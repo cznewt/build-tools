@@ -30,16 +30,16 @@ else:
         print('Failed creating Gitea repository: {}'.format(
             cmd.errors
         ))
-        exit 1
+        exit
 
 for key in keys:
     print('\nCreating Gitea deploy key "{}"...'.format(key['name']))
-    cmd = !(gitea exists $GITEA_REPO_NAME)
+    cmd = !(gitea deploy-key $GITEA_REPO_NAME key['name'] key['key'])
     if cmd.returncode == 0:
         print('Gitea deploy key created.')
     else:
         print('Failed creating Gitea deploy key: {}'.format(
             cmd.errors
         ))
-        exit 1
+        exit
 
